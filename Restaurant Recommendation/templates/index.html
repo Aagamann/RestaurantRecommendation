@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Restaurant Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+  <style>
+    body { background:#f8f9fa; }
+    main { max-width:1200px; margin:0 auto; padding:2rem; }
+    .grid { display:grid; gap:1.5rem; }
+    .grid-2 { grid-template-columns: 2fr 1fr; }
+    .card { background:#fff; padding:1.5rem; border-radius:12px; box-shadow:0 3px 8px rgba(0,0,0,0.1); }
+    h2 { margin-top:0; }
+    canvas { max-width:100%; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Restaurant Dashboard</h1>
+
+    <!-- Search Section -->
+    <section class="card">
+      <input type="text" id="restaurant" placeholder="Search restaurant" list="restaurants">
+      <datalist id="restaurants"></datalist>
+      <button id="searchBtn">Analyze</button>
+      <span id="status"></span>
+    </section>
+
+    <!-- Restaurant Info -->
+    <section class="grid grid-2">
+      <div class="card" style="display: flex; gap: 1rem; align-items: flex-start;">
+        <div style="flex: 1; max-width: 200px;">
+          <img id="resImg" src="/static/images/default.jpg" alt="Restaurant Image" style="width:100%; border-radius:8px;">
+        </div>
+        <div style="flex: 2;">
+          <h2>Restaurant Details</h2>
+          <p><strong>Name:</strong> <span id="resName">—</span></p>
+          <p><strong>Location:</strong> <span id="resLoc">—</span></p>
+          <p><strong>Contact:</strong> <span id="resContact">—</span></p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Overview</h2>
+        <p>Total Reviews: <span id="totalReviews">0</span></p>
+        <p>Average Rating: <span id="avgRating">0.0</span></p>
+        <p>Positive: <span id="posCount">0</span> | Negative: <span id="negCount">0</span></p>
+      </div>
+    </section>
+
+    <!-- Charts -->
+    <section class="grid grid-2">
+      <div class="card">
+        <h2>Rating Distribution</h2>
+        <canvas id="ratingChart"></canvas>
+      </div>
+      <div class="card">
+        <h2>Sentiment Split</h2>
+        <canvas id="sentimentChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Reviews List -->
+    <section class="card">
+      <h2>Reviews</h2>
+      <ul id="reviewsList"></ul>
+    </section>
+
+    <!-- Submit Review + Rating -->
+    <section class="grid grid-2">
+      <div class="card">
+        <h2>Submit Your Review</h2>
+        <textarea id="newReview" rows="3" placeholder="Write a review..."></textarea>
+      </div>
+      <div class="card">
+        <h2>Submit Your Rating</h2>
+        <label for="ratingSelect"><strong>Choose Rating (1-5):</strong></label><br>
+        <select id="ratingSelect">
+          <option value="">-- Select --</option>
+          <option value="1">⭐ 1</option>
+          <option value="2">⭐⭐ 2</option>
+          <option value="3">⭐⭐⭐ 3</option>
+          <option value="4">⭐⭐⭐⭐ 4</option>
+          <option value="5">⭐⭐⭐⭐⭐ 5</option>
+        </select>
+      </div>
+      <div class="card" style="grid-column: span 2;">
+        <button id="submitFeedbackBtn">Submit Feedback</button>
+        <p><strong>Status:</strong> <span id="feedbackStatus"></span></p>
+        <p><strong>Prediction:</strong> <span id="predictedSentiment"></span></p>
+      </div>
+    </section>
+
+    <!-- Personalized Recommendations -->
+    <section class="card" id="userRecommendations">
+      <!-- Populated dynamically -->
+    </section>
+
+    <!-- Similar Restaurants (CBF) -->
+    <section class="card" id="similarRestaurants">
+      <!-- Populated dynamically -->
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/static/main.js"></script>
+</body>
+</html>

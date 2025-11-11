@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Restaurant Recommender</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+  <style>
+    body { 
+      margin:0;
+      font-family: system-ui, sans-serif;
+      background: linear-gradient(135deg, #e1ebeb 0%, #9face6 100%);
+      min-height:100vh;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+    }
+
+    main.wrap { 
+      max-width:1100px; 
+      width:100%;
+      margin:2rem auto; 
+      padding:2rem; 
+      background:#14c0c3d9; 
+      border-radius:16px; 
+      box-shadow:0 8px 20px rgba(0,0,0,0.15); 
+    }
+
+    h1 { 
+      text-align:left; 
+      margin-bottom:0.5rem; 
+      color:#333; 
+    }
+
+    .grid { display:grid; gap:1rem; }
+    @media(min-width:900px){ .grid-3 { grid-template-columns:1fr 1fr 1fr; } }
+
+    .card { 
+      background:#fff; 
+      border-radius:12px; 
+      padding:1rem; 
+      box-shadow:0 4px 12px rgba(0,0,0,0.1); 
+      cursor:pointer; 
+      transition:transform 0.25s, box-shadow 0.25s; 
+    }
+
+    .card:hover { 
+      transform:translateY(-6px); 
+      box-shadow:0 8px 20px rgba(0,0,0,0.15); 
+    }
+
+    .muted { color:#666; font-size:0.95rem; }
+
+    .top-links { text-align:left; margin-bottom:1.5rem; }
+    .top-links a { text-decoration:none; font-weight:bold; color:#0077cc; }
+    .top-links a:hover { text-decoration:underline; }
+
+    #selectedRestaurant {
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      background: rgba(0,0,0,0.2);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Restaurant Recommender by NAM</h1>
+    <div class="top-links">
+      <a href="/dashboard">🔗 Show All Restaurants</a>
+    </div>
+    <p class="muted">Choose a restaurant to view dashboards or explore similar ones.</p>
+
+    <!-- 🧠 Dynamic Similar Section -->
+    <h2>Similar Restaurants You May Like 🍽</h2>
+    <div id="selectedRestaurant">No restaurant selected yet.</div>
+    <section id="similarGrid" class="grid grid-3"></section>
+    <hr>
+
+    <!-- ⭐ Common Restaurants -->
+    <h2>Popular Restaurants ⭐</h2>
+    <section id="recommendGrid" class="grid grid-3"></section>
+    <hr>
+
+    <!-- 📍 Location-based Recommendations -->
+    <h2>Restaurant Based On Location 📍</h2>
+
+    <h3>Thamel 📍</h3>
+    <section id="thamelGrid" class="grid grid-3"></section>
+
+    <h3>Kathmandu 📍</h3>
+    <section id="kathmanduGrid" class="grid grid-3"></section>
+
+    <h3>Bhaktapur 📍</h3>
+    <section id="bhaktapurGrid" class="grid grid-3"></section>
+
+    <h3>Lalitpur 📍</h3>
+    <section id="lalitpurGrid" class="grid grid-3"></section>
+
+    <hr>
+    <!-- 📋 All Restaurants -->
+    <h2>All Restaurants 📋</h2>
+    <section id="restaurantGrid" class="grid grid-3"></section>
+  </main>
+
+  <script src="/static/recommender.js"></script>
+</body>
+</html>
